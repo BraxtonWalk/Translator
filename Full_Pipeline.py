@@ -16,8 +16,12 @@ tqdm.tqdm = lambda *args, **kwargs: args[0]  # disables progress bars
 
 
 import Speech2Text
-from MeloTTS.translation_scripts import *
-
+from MeloTTS.translation_scripts import EnglishTranslation as english_main
+from MeloTTS.translation_scripts import SpanishTranslation as spanish_main
+from MeloTTS.translation_scripts import FrenchTranslation as french_main
+from MeloTTS.translation_scripts import ChineseTranslation as chinese_main
+from MeloTTS.translation_scripts import JapaneseTranslation as japanese_main
+from MeloTTS.translation_scripts import KoreanTranslation as korean_main
 
 # Run the main speech-to-text pipeline
 translated_lang = Speech2Text.main()
@@ -30,14 +34,14 @@ with open(file_path, 'r', encoding='utf-8') as file:
 # Send the text to the correct model
 match translated_lang:
     case "EN":
-        english_main(translated_text)
+        english_main.main(translated_text)
     case "ES":
-        spanish_main(translated_text)
+        spanish_main.main(translated_text)
     case "FR":
-        french_main(translated_text)
+        french_main.main(translated_text)
     case "ZH":
-        chinese_main(translated_text)
+        chinese_main.main(translated_text)
     case "JP":
-        japanese_main(translated_text)
+        japanese_main.main(translated_text)
     case "KR":
-        korean_main(translated_text)
+        korean_main.main(translated_text)
