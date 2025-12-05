@@ -3,6 +3,7 @@ import numpy as np
 from faster_whisper import WhisperModel
 import wave
 import queue
+from googletrans import Translator
 
 # Configuration
 SAMPLE_RATE = 16000
@@ -50,6 +51,7 @@ def transcribe_audio(audio, input_lang_code, output_lang_code):
     segments, _ = model.transcribe(tmp_file, language=input_lang_code, task="transcribe")
     text = " ".join([seg.text for seg in segments])
     
+    print(text)
     # Step 2: Translate if needed
     if output_lang_code != input_lang_code:
         translated = translator.translate(text, src=input_lang_code, dest=output_lang_code)
@@ -86,12 +88,7 @@ def main(lang1,lang2):
     print("\n--- Full Transcription/Translation ---\n")
     print(text)
 
-    with open(OUTPUT_FILE, 'a', encoding='utf-8') as f:
-        f.write(text)
-        f.close()
-    print(f"\nSaved transcription/translation to {OUTPUT_FILE}")
-
-    return lang2 # Returning here so we can use it later in the main pipeline
+    return text.strip(), lang2
 
 if __name__ == "__main__":
     main()
