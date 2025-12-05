@@ -4,7 +4,6 @@ import torch
 import simpleaudio as sa
 from IPython.display import display, Audio
 import soundfile as sf
-from playsound import playsound
 
 # Replace 'your_audio_file.mp3' with the actual path to your audio file
  

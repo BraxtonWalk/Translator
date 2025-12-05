@@ -24,7 +24,7 @@ LANGUAGES = {
 
 def main():
     print("Translation App - Select from these languages:")
-    print("EN - English\nES - Spanish\nFR - French\nZH - Chinese\nJP - Japanese\nKR - Korean")
+    print("EN - English\nES - Spanish\nFR - French\nZH - Chinese\nJP - Japanese")
 
     input_lang_abbr = input("Input Language (abbreviation): ").upper()
     output_lang_abbr = input("Output Language (abbreviation): ").upper()
