@@ -17,10 +17,10 @@ def main(text: str, inputLang: str = "EN"):
     print("Language:", lang_code)
     print("Text:", text)
 
-    #Initializes Kokor Model
+    #Initializes Kokoro Model
     pipeline = KPipeline(lang_code=lang_code)
 
-    #Calls Kokor model and sends through text to then be spoken
+    #Calls Kokoro model and sends through text to then be spoken
     generator = pipeline(text, voice='am_eric')
     filename = ""
 
