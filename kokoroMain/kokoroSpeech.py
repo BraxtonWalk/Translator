@@ -1,4 +1,5 @@
 from kokoro import KPipeline
+import soundfile as sf
  
 LANGUAGES = {
     "EN": "a",
