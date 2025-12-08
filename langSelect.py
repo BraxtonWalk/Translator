@@ -1,18 +1,5 @@
-import sounddevice as sd
-import numpy as np
-from faster_whisper import WhisperModel
-import wave
-import queue
-from googletrans import Translator
 
 # Configuration
-SAMPLE_RATE = 16000
-CHANNELS = 1
-MODEL_DIR = "small"
-OUTPUT_FILE = "transcription.txt"
-
-output_lang_abbr = ""
-
 # Language mapping (WhisperModel uses slightly different abbreviations than MeloTTS)
 LANGUAGES = {
     "EN": "en",

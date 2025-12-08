@@ -4,6 +4,11 @@ import wave
 import queue
 from faster_whisper import WhisperModel
 
+##############################################################################
+# DOES THE SAME THING AS SPEECH TO TEXT. JUST USING IT TO GENERATE SPECTROGRAM
+##############################################################################
+
+
 # Configuration
 SAMPLE_RATE = 16000
 CHANNELS = 1

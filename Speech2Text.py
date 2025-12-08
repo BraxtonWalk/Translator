@@ -20,8 +20,6 @@ LANGUAGES = {
 }
 output_lang_abbr = ""
 
-# Language mapping (WhisperModel uses slightly different abbreviations than MeloTTS)
-
 # Queue to store audio chunks
 audio_queue = queue.Queue()
 
@@ -31,11 +29,14 @@ model = WhisperModel(MODEL_DIR, device="cuda")  # or "cpu"
 # Translator for output language
 translator = Translator()
 
+
+#Putting Audio chunks into Queue
 def audio_callback(indata, frames, time_info, status):
     if status:
         print(status)
     audio_queue.put(indata.copy().flatten())
 
+#Save audio channel
 def save_wav(filename, audio):
     with wave.open(filename, 'wb') as wf:
         wf.setnchannels(CHANNELS)
@@ -43,6 +44,9 @@ def save_wav(filename, audio):
         wf.setframerate(SAMPLE_RATE)
         wf.writeframes(audio.tobytes())
 
+#Takes in the temp file that was created from sound byte
+#Takes in the audio file and transcribes it into the input langues text 
+#Translates the temporary text into the output language and returns the translated text.
 def transcribe_audio(audio, input_lang_code, output_lang_code):
     tmp_file = "full_recording.wav"
     save_wav(tmp_file, audio)
@@ -59,10 +63,13 @@ def transcribe_audio(audio, input_lang_code, output_lang_code):
     
     return text
 
+
+
 def main(lang1,lang2):
    
     print("\nRecording... Press Ctrl+C to stop.")
     
+    #Gets audio recording until a keyboard interrupt happens
     try:
         with sd.InputStream(samplerate=SAMPLE_RATE, channels=CHANNELS, dtype='int16', callback=audio_callback):
             while True:
@@ -79,15 +86,19 @@ def main(lang1,lang2):
         print("No audio captured.")
         return
 
+    #Take all audio chunks and connect them into a single audio stream
     full_audio = np.concatenate(audio_chunks)
     lang1_abbr = LANGUAGES[lang1]
     lang2_abbr = LANGUAGES[lang2]
     print("Transcribing and translating...")
+
+    #Taking full audio stream with the input and output language and sending it to transcribe_audio() function
     text = transcribe_audio(full_audio, lang1_abbr, lang2_abbr)
 
     print("\n--- Full Transcription/Translation ---\n")
     print(text)
 
+    # Return text and language 2
     return text.strip(), lang2
 
 if __name__ == "__main__":

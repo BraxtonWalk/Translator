@@ -40,7 +40,7 @@ def main():
     n_samples = wav_obj.getnframes()
     time_audio = n_samples / sample_freq
 
-    # Read PCM data
+    # Read Pulse Code Modulation (PCM) data
     signal_wave = wav_obj.readframes(n_samples)
     signal_array = np.frombuffer(signal_wave, dtype=np.int16)
 
