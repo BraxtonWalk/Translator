@@ -11,7 +11,6 @@ A real-time audio translation system that captures microphone input, converts sp
 
 ## How to use
 - clone the repository (git clone https://github.com/BraxtonWalk/Translator.git)
-- switch to the transAudio branch
 - open the Full_Pipeline.py
 - run the file and follow instructions in terminal
 - to change the voice look up voices from kokoro and paste voice in kokoroSpeech.py
