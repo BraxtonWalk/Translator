@@ -10,6 +10,7 @@ A real-time audio translation system that captures microphone input, converts sp
 - Optional transcription logging, language auto-detection, and real-time UI updates
 
 ## How to use
+- hardest part will be installing the required libraries used for this project
 - clone the repository (git clone https://github.com/BraxtonWalk/Translator.git)
 - open the Full_Pipeline.py
 - run the file and follow instructions in terminal
